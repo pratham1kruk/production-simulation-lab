@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <center>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Honda Logo">
+            </div>
+        </center>
+        <h1>Stock Management</h1>
+
+        <h2>Existing Two-wheeler</h2>
+        <div class="bike-cards">
+            {% for bike in bikes %}
+            <div class="bike-card">
+                <img src="{{ url_for('static', filename='images/' + bike['image']) }}">
+                <h3>{{ bike['name'] }} ({{ bike['model'] }})</h3>
+                <p>Engine: {{ bike['engine_cc'] }} cc</p>
+                <p>Tank: {{ bike['tank_capacity'] }} L</p>
+                <p>Year: {{ bike['year'] }}</p>
+                <p>Stock: {{ bike['quantity'] }}</p>
+                <p>Ex-Showroom Price: ₹{{ bike['ex_showroom_price'] }}</p>
+                <p>Approx. On-Road Price: ₹{{ (bike['ex_showroom_price']*1.12 + 1500 + bike['ex_showroom_price']*0.03 + 2000)|round(0) }}</p>
+                
+                <form method="POST" action="{{ url_for('stock') }}">
+                    <input type="hidden" name="bike_id" value="{{ bike['id'] }}">
+                    <button name="action" value="add">➕</button>
+                    <button name="action" value="subtract">➖</button>
+                </form>
+                <form method="POST" action="{{ url_for('delete_bike', bike_id=bike['id']) }}">
+                    <button class="delete-btn">Remove Bike</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <h2>Add Stock</h2>
+        <form method="POST" action="{{ url_for('add_bike') }}" enctype="multipart/form-data" class="add-bike-form">
+            <input type="text" name="name" placeholder="Bike Name" required>
+            <input type="text" name="model" placeholder="Model" required>
+            <input type="number" name="engine_cc" placeholder="Engine CC" required>
+            <input type="number" name="tank_capacity" placeholder="Tank Capacity (L)" required>
+            <input type="number" name="year" placeholder="Year of Release" required>
+            <input type="number" name="quantity" placeholder="Stock Quantity" required>
+            <input type="number" name="ex_showroom_price" placeholder="Ex-Showroom Price" required>
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+</body>
+</html>

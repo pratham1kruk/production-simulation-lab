@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Billing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Generate Bill</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <p style="color: {% if category == 'error' %}red{% else %}green{% endif %};">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" class="billing-form">
+        <h3>Customer Details</h3>
+        <input type="text" name="customer_name" placeholder="Full Name" required>
+        <input type="text" name="contact" placeholder="Contact Number" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <textarea name="address" placeholder="Customer Address" required></textarea>
+
+        <h3>Bike Selection</h3>
+        <select name="bike_id" id="bike_select" required onchange="updateStock()">
+            <option value="">Select Bike</option>
+            {% for bike in bikes %}
+                <option value="{{ bike['id'] }}" data-stock="{{ bike['quantity'] }}">
+                    {{ bike['name'] }} ({{ bike['model'] }}) - ₹{{ bike['ex_showroom_price']|round(0) }} | Stock: {{ bike['quantity'] }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <input type="number" name="quantity" id="quantity" min="1" placeholder="Quantity" required>
+
+        <h3>Finance Details</h3>
+        <select name="finance_option">
+            <option value="None">None</option>
+            <option value="Loan">Loan</option>
+            <option value="EMI">EMI</option>
+        </select>
+
+        <input type="number" name="down_payment" step="0.01" placeholder="Down Payment Amount">
+
+        <button type="submit">Generate Bill</button>
+    </form>
+</div>
+
+<script>
+function updateStock() {
+    const select = document.getElementById('bike_select');
+    const qtyInput = document.getElementById('quantity');
+    const stock = select.options[select.selectedIndex].getAttribute('data-stock');
+    qtyInput.max = stock;
+}
+</script>
+</body>
+</html>

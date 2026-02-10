@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bill #{{ bill['id'] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #000; background-color: #f5f5f5; }
+        .bill-container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        h2, h3 { text-align: center; color: #d40000; }
+        .customer-info { margin: 20px 0; padding: 10px; border: 1px solid #333; border-radius: 5px; }
+        .customer-info p { margin: 5px 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #333; padding: 8px; text-align: center; }
+        th { background-color: #d40000; color: white; }
+        .total, .grand { text-align: right; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="bill-container">
+    <h2>Ahnaaz Automobiles</h2>
+    <h3>Bill #: {{ bill['id'] }}</h3>
+    <p><strong>Date:</strong> {{ bill['date'] }}</p>
+
+    <div class="customer-info">
+        <h4>Customer Info</h4>
+        <p><strong>Name:</strong> {{ bill['customer_name'] }}</p>
+        <p><strong>Contact:</strong> {{ bill['contact'] }}</p>
+        <p><strong>Email:</strong> {{ bill['email'] }}</p>
+        <p><strong>Address:</strong> {{ bill['address'] }}</p>
+        <p><strong>Finance:</strong> {{ bill['finance_option'] }} | <strong>Down Payment:</strong> ₹{{ bill['down_payment']|round(0) }}</p>
+    </div>
+
+    {% set ex_showroom = bill['price_per_unit'] - (bill['price_per_unit']*0.12 + 1500 + bill['price_per_unit']*0.03 + 2000) %}
+    {% set road_tax = bill['price_per_unit']*0.12 %}
+    {% set registration = 1500 %}
+    {% set insurance = bill['price_per_unit']*0.03 %}
+    {% set dealer = 2000 %}
+    {% set total_per_unit = ex_showroom + road_tax + registration + insurance + dealer %}
+    {% set grand_total = total_per_unit * bill['quantity'] %}
+    {% set remaining_amount = grand_total - bill['down_payment'] %}
+
+    <table>
+        <tr>
+            <th>Bike</th>
+            <th>Quantity</th>
+            <th>Ex-Showroom Price</th>
+            <th>Road Tax</th>
+            <th>Registration</th>
+            <th>Insurance</th>
+            <th>Dealer Charges</th>
+            <th>Total/Unit</th>
+        </tr>
+        <tr>
+            <td>{{ bill['bike_name'] }}</td>
+            <td>{{ bill['quantity'] }}</td>
+            <td>₹{{ ex_showroom|round(0) }}</td>
+            <td>₹{{ road_tax|round(0) }}</td>
+            <td>₹{{ registration }}</td>
+            <td>₹{{ insurance|round(0) }}</td>
+            <td>₹{{ dealer }}</td>
+            <td>₹{{ total_per_unit|round(0) }}</td>
+        </tr>
+        <tr>
+            <td colspan="7" class="total">Grand Total</td>
+            <td>₹{{ grand_total|round(0) }}</td>
+        </tr>
+        <tr>
+            <td colspan="7" class="total">Down Payment</td>
+            <td>₹{{ bill['down_payment']|round(0) }}</td>
+        </tr>
+        <tr>
+            <td colspan="7" class="grand">Remaining Amount</td>
+            <td>₹{{ remaining_amount|round(0) }}</td>
+        </tr>
+    </table>
+
+    <p style="text-align:center; margin-top:20px;">Thank you for visiting our Honda Showroom!</p>
+</div>
+</body>
+</html>
