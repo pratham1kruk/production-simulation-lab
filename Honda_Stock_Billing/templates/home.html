@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honda Showroom</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Honda Logo">
+        </div>
+        <nav class="nav-bar">
+            <a href="{{ url_for('stock') }}" class="nav-btn">📦 Stock</a>
+            <a href="{{ url_for('billing') }}" class="nav-btn">🧾 Billing</a>
+            <a href="{{ url_for('billing_history') }}" class="nav-btn">📚 History</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Flagship Bikes -->
+    <section class="hero-section">
+        <center>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Honda Logo">
+            </div>
+        </center>
+        <h1>Welcome to Ahnaaz Automobiles</h1>
+        <p>Since 2018 | Email us: A2honda_cwn@gmail.com | Contact: 9424064533</p>
+        <div class="flagship-carousel">
+            <img src="{{ url_for('static', filename='images/shine.png') }}" alt="Most Selling Bike">
+            <img src="{{ url_for('static', filename='images/flagship.png') }}" alt="Flagship Bike">
+            <img src="{{ url_for('static', filename='images/honda_Activa.png') }}" alt="Most Selling Scooter">
+            <!-- Add more images if needed -->
+        </div>
+    </section>
+
+    <!-- Search & Filter -->
+    <section class="search-section">
+        <form action="{{ url_for('search_bike') }}" method="GET" class="search-form">
+            <input type="text" name="query" placeholder="Search bike by name or model...">
+            <button type="submit">Search</button>
+            <!-- You can add a filter dropdown here if needed -->
+        </form>
+    </section>
+
+    <!-- About & Services -->
+    <section class="info-section">
+        <div class="about-us">
+            <h2>About Us</h2>
+            <p>Ahnaaz Automobiles, located in the heart of Chhindwara, Madhya Pradesh, is a trusted and premier Honda dealership dedicated to providing top-quality motorcycles and exceptional customer service. Since our inception in 2018, we have been committed to delivering not just bikes, but an experience of reliability, innovation, and performance that Honda is renowned for.</p>
+            <p>At Ahnaaz Automobiles, our mission is to ensure that every customer finds the perfect two-wheeler that matches their lifestyle and preferences. Our team of knowledgeable and friendly professionals guides you through every step — from choosing the right bike to after-sales support, servicing, and genuine spare parts.</p>
+        </div>
+        <div class="services">
+            <h2>Our Services</h2>
+            <ul>
+                <li>Customer Care Support 24x7 available</li>
+                <li>Replacement Assistance</li>
+                <li>Insurance Support</li>
+                <li>Car/Bike Servicing & Repairs</li>
+                <li>Remote Emergency Support</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Ahnaaz Automobiles | Ground Floor, W.N.15, Beside MPEB Office, Chhindwara Road, Shiv Industries, Nagpur Road, Sausar - 480001</p>
+    </footer>
+</body>
+</html>
