@@ -3,7 +3,6 @@
 ![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
 ![Status](https://img.shields.io/badge/status-active-success)
 ![DevOps](https://img.shields.io/badge/focus-DevOps-blue)
-![Cloud](https://img.shields.io/badge/cloud-AWS%20%7C%20Tencent-orange)
 ![Environment](https://img.shields.io/badge/environment-WSL2%20%7C%20Linux-lightgrey)
 
 ## 📌 Overview
@@ -13,7 +12,7 @@
 ### What This Lab Offers
 
 - **Real-World Simulation**: Practice production-style deployments in a controlled environment
-- **Multi-Cloud Experience**: Experiment with AWS, Tencent Cloud, and future platforms
+- **Multi-Cloud Experience**: Experiment with AWS and future platforms
 - **Infrastructure Automation**: Build, break, and fix systems to develop troubleshooting expertise
 - **End-to-End Testing**: From DNS configuration to application deployment
 - **Safe Experimentation**: Test dangerous operations without production consequences
@@ -37,7 +36,6 @@
 ### ☁️ Cloud Platforms
 
 - **AWS** - Amazon Web Services
-- **Tencent Cloud** - Cloud infrastructure
 - **Future**: GCP, Azure
 
 ### 🌐 Servers & Networking
@@ -57,8 +55,9 @@
 
 ### 🖥️ Applications & Development
 
-- **Python** - Core language for GUI development
+- **Python** - Core language for GUI and web development
 - **Tkinter** - GUI framework for desktop applications
+- **FastAPI** - API framework for REST API development
 - **MySQL** - Database management system
 - **Web Technologies** - HTML, CSS, JavaScript
 - **Static Site Hosting** - AWS deployment testing
@@ -73,6 +72,7 @@ production-simulation-lab/
 │
 ├── CCtkinter/            # Currency Converter GUI (Tkinter + MySQL)
 ├── Honda_Stock_Billing/  # Stock billing web application
+├── game_lore_api/        # API for fetching game details
 ├── smart_parking/        # Static website (AWS deployment testing)
 ├── .gitignore            # Git ignore rules
 ├── LICENSE               # Apache License 2.0
@@ -84,20 +84,12 @@ production-simulation-lab/
 | Project | Type | Description | Technologies |
 |---------|------|-------------|--------------|
 | **CCtkinter** | Desktop GUI | Currency converter application with database integration | Python, Tkinter, MySQL |
-| **Honda_Stock_Billing** | Web App | Stock billing management system | Web technologies |
+| **Honda_Stock_Billing** | Web App | Stock billing management system | Python, Flask, MySQL |
+| **game_lore_api** | API | Game metadata aggregator for Postman testing | Python, FastAPI |
 | **smart_parking** | Static Website | Basic static website used for AWS deployment testing | HTML, CSS, JavaScript |
 
 > **Note**: Structure evolves organically as experimentation expands.
 
----
-
-## 🔬 What This Lab Simulates
-
-| Area | Simulation |
-|------|------------|
-| **DNS Management** | Production-style DNS setup with BIND9 |
-| **Web Hosting** | Apache server binding and virtual hosts |
-| **Security** | Firewall configuration and port management |
 ---
 
 ## 🚀 Quick Start Guide
@@ -135,7 +127,6 @@ Web-based stock and billing management system for Honda dealership operations.
 
 **Prerequisites:**
 - Python 3.8+
-- MySQL Server running
 
 **Setup:**
 ```bash
@@ -169,7 +160,34 @@ Open browser: **http://localhost:5000**
 
 ---
 
-### 3. **game_lore_api** - Game Metadata Aggregator API
+### 3. **smart_parking** - Static Website
+
+Static website used for AWS deployment testing and hosting practice.
+
+**Setup:**
+```bash
+cd smart_parking
+# No dependencies needed - pure HTML/CSS/JavaScript
+```
+
+**Serve Locally:**
+```bash
+# Using Python 3
+python -m http.server 8000
+
+# Or using Node.js http-server
+npx http-server
+```
+
+Open browser: **http://localhost:8000**
+
+**Features:**
+- Responsive design
+- Smart parking booking interface
+- User profiles and booking history
+- Real-time parking availability visualization
+
+### 4. **game_lore_api** - Game Metadata Aggregator API
 
 FastAPI REST API that aggregates game data from RAWG and GiantBomb APIs to provide comprehensive game information, franchise timelines, studio histories, and series chains.
 
@@ -270,35 +288,6 @@ Client
 
 ---
 
-### 4. **smart_parking** - Static Website
-
-Static website used for AWS deployment testing and hosting practice.
-
-**Setup:**
-```bash
-cd smart_parking
-# No dependencies needed - pure HTML/CSS/JavaScript
-```
-
-**Serve Locally:**
-```bash
-# Using Python 3
-python -m http.server 8000
-
-# Or using Node.js http-server
-npx http-server
-```
-
-Open browser: **http://localhost:8000**
-
-**Features:**
-- Responsive design
-- Smart parking booking interface
-- User profiles and booking history
-- Real-time parking availability visualization
-
----
-
 ## 🔌 Port Configuration
 
 | Service | Default Port | Environment Variable |
@@ -340,11 +329,11 @@ CREATE DATABASE honda_billing;
 
 ## 📋 Environment Files
 
-Each project may require `.env` file configuration:
+Each project may require configuration before running:
 - `game_lore_api/.env` - API keys and server config
 - `Honda_Stock_Billing/config.py` - Database credentials
 
-Always copy from `.example` files and fill in your credentials before running.
+Always fill in your credentials before running.
 
 ---
 
@@ -352,10 +341,10 @@ Always copy from `.example` files and fill in your credentials before running.
 
 1. **Clone/Navigate** to project directory
 2. **Install** dependencies (`pip install -r requirements.txt`)
-3. **Configure** environment variables (`.env` or config files)
-4. **Start** the service (run script or uvicorn/flask command)
-5. **Test** via browser or curl/Postman
-6. **Debug** using logs and API documentation
+3. **Configure** environment variables or config files
+4. **Start** the service
+5. **Test** via browser or curl
+6. **Debug** using logs
 
 ---
 
@@ -372,14 +361,6 @@ curl http://localhost:5000/
 # Test smart_parking
 curl http://localhost:8000/
 ```
-
----| **Networking** | Resolver manipulation and WSL networking |
-| **Deployment** | Multi-application hosting strategies |
-| **Cloud Operations** | AWS/Tencent deployment experiments |
-| **Validation** | Service health checks and monitoring |
-| **Recovery** | Infrastructure rollback and reconfiguration |
-
-This lab enables **controlled failure testing** — a critical DevOps skill that can't be practiced in production.
 
 ---
 
@@ -406,6 +387,13 @@ A basic static website used as a testing ground for AWS deployment workflows. Us
 - Infrastructure testing
 - DNS and domain configuration
 - Production deployment simulation
+
+### 🎮 **game_lore_api** - Game Metadata Aggregator API
+A FastAPI REST API that aggregates game data from RAWG and GiantBomb APIs. Demonstrates:
+- REST API design and development with FastAPI
+- Third-party API integration and data aggregation
+- Postman-based API testing workflows
+- Environment-based configuration management
 
 ### Additional Experiments
 - 🌍 Hosting web applications via Apache
@@ -437,6 +425,9 @@ cd CCtkinter/
 
 # Stock Billing System
 cd Honda_Stock_Billing/
+
+# Game Metadata API
+cd game_lore_api/
 
 # Static Website (AWS Testing)
 cd smart_parking/
