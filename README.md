@@ -1,9 +1,27 @@
-# 🚀 Production Simulation Lab
+<div align="center">
 
-![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
-![Status](https://img.shields.io/badge/status-active-success)
-![DevOps](https://img.shields.io/badge/focus-DevOps-blue)
-![Environment](https://img.shields.io/badge/environment-WSL2%20%7C%20Linux-lightgrey)
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=200&section=header&text=Production%20Simulation%20Lab&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=A%20DevOps%20%2B%20Full-Stack%20Experimentation%20Sandbox&descAlignY=58&descSize=18" alt="Production Simulation Lab banner" width="100%"/>
+
+<br/>
+
+![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-active-success?style=for-the-badge)
+![DevOps](https://img.shields.io/badge/focus-DevOps-blue?style=for-the-badge)
+![Environment](https://img.shields.io/badge/environment-WSL2%20%7C%20Linux-lightgrey?style=for-the-badge)
+
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-3.0.3-000000?style=for-the-badge&logo=flask&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115.5-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![AWS Amplify](https://img.shields.io/badge/AWS%20Amplify-hosting-FF9900?style=for-the-badge&logo=awsamplify&logoColor=white)
+
+![Last Commit](https://img.shields.io/github/last-commit/pratham1kruk/production-simulation-lab?style=for-the-badge&color=orange)
+![Repo Size](https://img.shields.io/github/repo-size/pratham1kruk/production-simulation-lab?style=for-the-badge&color=informational)
+![Top Language](https://img.shields.io/github/languages/top/pratham1kruk/production-simulation-lab?style=for-the-badge)
+
+</div>
+
+<br/>
 
 ## 📌 Overview
 
@@ -117,3 +135,9 @@ Apache License 2.0 — see [LICENSE](LICENSE).
 ## 🤝 Contributing
 
 Personal learning repo, but suggestions are welcome via fork → feature branch → PR.
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=100&section=footer" alt="footer" width="100%"/>
+
+</div>
